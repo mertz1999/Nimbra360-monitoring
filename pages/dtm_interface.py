@@ -64,7 +64,10 @@ class DTMInterface():
         return DTM
     
     def sp_print(self,DTM):
-        print(f"TX: {DTM['TX']}, RX: {DTM['TX']}")
+        print("+ DTM result: ")
+        print(f"   - TX: {DTM['TX']}")
+        print(f"   - RX: {DTM['RX']}")
+
 
 
 

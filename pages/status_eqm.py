@@ -17,7 +17,7 @@ class StatusEqm():
 
     def __init__(self, driver : webdriver.Chrome, url):
         # Print information
-        print(f' ################## Start Status  Equipment({url}) ################## ')        
+        print(f'(Info) Start Status  Equipment({url})')        
     
         # Save parameters
         self.url        = url
@@ -38,6 +38,7 @@ class StatusEqm():
  
 
         return float(temprature)
+    
 
 
 

@@ -48,11 +48,11 @@ class PMOverview():
         return result
 
     def sp_print(self,result):
-        print(f"Trunk monitoring results:")
-        print(f"  - ES  : {result['ES']}")
-        print(f"  - SES : {result['SES']}")
-        print(f"  - BBE : {result['UAS']}")
-        print(f"  - SS  : {result['SS']}")
+        print(f"+ Trunk monitoring results:")
+        print(f"   - ES  : {result['ES']}")
+        print(f"   - SES : {result['SES']}")
+        print(f"   - BBE : {result['UAS']}")
+        print(f"   - SS  : {result['SS']}")
 
 
 

@@ -58,9 +58,9 @@ class StatusAlarm():
     
 
     def sp_print(self, today_alarms):
-        print("Alarm Data: ")
+        print("+ Alarm Data: ")
         for idx,alarm in enumerate(today_alarms):
-            print(f"  - {idx} Cause: {alarm[0]}, Type: {alarm[1]}, Object Name: {alarm[2]}, Text: {alarm[3]}, Time: {alarm[4]}, ACK: {alarm[5]}")
+            print(f"   - {idx} Cause: {alarm[0]}, Type: {alarm[1]}, Object Name: {alarm[2]}, Text: {alarm[3]}, Time: {alarm[4]}, ACK: {alarm[5]}")
 
 
 

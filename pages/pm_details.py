@@ -20,7 +20,7 @@ class PMDetails():
 
     def __init__(self, driver : webdriver.Chrome, url, TS_number, date='20 Oct 2021'):
         # Print information
-        print(f'(Info) Start PM Details ({url+f"?dch.{1}"}) ')        
+        print(f'(Info) Start PM Details ({url+f"?dch.{TS_number}"}) ')        
     
         # Save parameters
         self.url        = url + f"?dch.{TS_number}"
@@ -61,11 +61,11 @@ class PMDetails():
         return result
     
     def sp_print(self,result):
-        print(f"TS {self.TS_number} results:")
-        print(f"  - ES  : {result['ES']}")
-        print(f"  - SES : {result['SES']}")
-        print(f"  - BBE : {result['BBE']}")
-        print(f"  - UAS : {result['UAS']}")
+        print(f"+ TS {self.TS_number} results:")
+        print(f"   - ES  : {result['ES']}")
+        print(f"   - SES : {result['SES']}")
+        print(f"   - BBE : {result['BBE']}")
+        print(f"   - UAS : {result['UAS']}")
 
 
 
