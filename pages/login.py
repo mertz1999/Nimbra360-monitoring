@@ -16,7 +16,7 @@ class Login():
 
     def __init__(self, driver : webdriver.Chrome, url, password = 'password', username = 'admin', login_name = 'Ghaen'):
         # Print information
-        print(f' ################## Start login page of ({login_name})({url}) ################## ')
+        print(f'(Info) Start login page of ({login_name})({url})')
     
         # Save parameters
         self.url        = url
@@ -40,7 +40,7 @@ class Login():
             elif name_of_input == 'ok'     : login_buttun = inp           # Submit login form
 
         login_buttun.click()
-        print("Login is correctly! \n")
+        print("(Info) Login is completed! \n")
 
         return True
 

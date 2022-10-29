@@ -12,7 +12,7 @@ class PMOverview():
 
     def __init__(self, driver : webdriver.Chrome, url):
         # Print information
-        print(f' ################## Start PM Overview ({url}) ################## ')        
+        print(f'(Info) Start PM Overview (Trunk) ({url}) ')        
     
         # Save parameters
         self.url        = url
@@ -47,6 +47,12 @@ class PMOverview():
 
         return result
 
+    def sp_print(self,result):
+        print(f"Trunk monitoring results:")
+        print(f"  - ES  : {result['ES']}")
+        print(f"  - SES : {result['SES']}")
+        print(f"  - BBE : {result['UAS']}")
+        print(f"  - SS  : {result['SS']}")
 
 
 

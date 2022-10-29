@@ -18,13 +18,14 @@ class PMDetails():
 
     """
 
-    def __init__(self, driver : webdriver.Chrome, url, date='20 Oct 2021'):
+    def __init__(self, driver : webdriver.Chrome, url, TS_number, date='20 Oct 2021'):
         # Print information
-        print(f' ################## Start PM Details ({url}) ################## ')        
+        print(f'(Info) Start PM Details ({url+f"?dch.{1}"}) ')        
     
         # Save parameters
-        self.url        = url
+        self.url        = url + f"?dch.{TS_number}"
         self.driver     = driver
+        self.TS_number  = TS_number
     
         # Split date
         self.date = date.split(' ') # Day, month, year
@@ -58,6 +59,13 @@ class PMDetails():
 
             
         return result
+    
+    def sp_print(self,result):
+        print(f"TS {self.TS_number} results:")
+        print(f"  - ES  : {result['ES']}")
+        print(f"  - SES : {result['SES']}")
+        print(f"  - BBE : {result['BBE']}")
+        print(f"  - UAS : {result['UAS']}")
 
 
 

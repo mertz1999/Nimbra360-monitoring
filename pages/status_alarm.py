@@ -26,7 +26,7 @@ class StatusAlarm():
 
     def __init__(self, driver : webdriver.Chrome, url, date='20 Oct 2021'):
         # Print information
-        print(f' ################## Start Status Alarm({url}) ################## ')
+        print(f'(Info) Start Status Alarm({url})')
 
         # Split date
         self.date = date.split(' ') # Day, month, year
@@ -55,6 +55,12 @@ class StatusAlarm():
                 
 
         return today_alarms
+    
+
+    def sp_print(self, today_alarms):
+        print("Alarm Data: ")
+        for idx,alarm in enumerate(today_alarms):
+            print(f"  - {idx} Cause: {alarm[0]}, Type: {alarm[1]}, Object Name: {alarm[2]}, Text: {alarm[3]}, Time: {alarm[4]}, ACK: {alarm[5]}")
 
 
 

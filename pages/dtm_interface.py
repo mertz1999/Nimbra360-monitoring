@@ -20,7 +20,7 @@ class DTMInterface():
 
     def __init__(self, driver : webdriver.Chrome, url):
         # Print information
-        print(f' ################## Start DTM Interface ({url}) ################## ')        
+        print(f'(Info) Start DTM Interface ({url})')        
     
         # Save parameters
         self.url        = url
@@ -62,6 +62,9 @@ class DTMInterface():
                     elif image_format == 'png' and idx == 1: DTM['RX'] = True
 
         return DTM
+    
+    def sp_print(self,DTM):
+        print(f"TX: {DTM['TX']}, RX: {DTM['TX']}")
 
 
 
