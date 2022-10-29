@@ -1,42 +1,81 @@
 from selenium.webdriver.chrome.service import Service
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from pages import login, status_alarm, status_eqm, dtm_interface,pm_overview, pm_details
 import time
 
 
 
+# Input data:
+chrome_driver_path = "./driver/chromedriver.exe"
+nimbra_name        = 'Ghaen'
+username           = "Reza Tanakizadeh"
+password           = "alaki"
+today_date         = '10 Sep 2022'
+yesterday_date     = '5 Oct 2021'
 
-username = "Reza Tanakizadeh"
-password = "alaki"
-name_of_login_page = 'Ghaen'
-url = "F://Nimbra360_scrapping/temp/login.html"
-
-# Define ChromeDriver
-service = Service(executable_path="./driver/chromedriver.exe")
-driver = webdriver.Chrome(service=service)
-
-# Open login page and check it
-driver.get(url)
-time.sleep(1)
-if driver.title != name_of_login_page:
-    print("--- logged before ---")
-    driver.close()
-    exit()
+# Urls
+login_url    = "F://Nimbra360_scrapping/temp/login.html"
+alarm_url    = "F://Nimbra360_scrapping/temp/status_alarm.html"
+equ_url      = "F://Nimbra360_scrapping/temp/status_eqm.html"
+dtm_url      = "F://Nimbra360_scrapping/temp/dtm_interface.html"
+pm_trunk_url = "F://Nimbra360_scrapping/temp/pm_overview.html"
+pm_ts_url    = "F://Nimbra360_scrapping/temp/pm_details.html"
 
 
-# Find login and pass input
-inputs = driver.find_elements(By.TAG_NAME, "input")
 
-# Pass data to login page
-for inp in inputs:
-    # Get name of inputs tag
-    name_of_input = inp.get_attribute("name")
+# Make an instance of Chrome driver
+service = Service(executable_path= chrome_driver_path)
+driver  = webdriver.Chrome(service=service)
 
-    # Check inputs name
-    if name_of_input == 'login':    # For login
-        inp.send_keys(password)
-    elif name_of_input == 'passwd': # For password
-        inp.send_keys(username)
-    elif name_of_input == 'ok':
-        login_buttun = inp
 
+print(f'\n ############## Start scrapping: {nimbra_name} ##############')
+
+# ############# LOGIN ###############
+login_ins =  login.Login(driver, login_url)
+login_ins.start()
+
+# ############# Alarm ###############
+alarm_ins    =  status_alarm.StatusAlarm(driver, alarm_url, date=today_date)
+alarm_result = alarm_ins.start()
+
+
+# ############# Temprature ###############
+eqm_ins    =  status_eqm.StatusEqm(driver, equ_url)
+eqm_result = eqm_ins.start()
+
+
+# ############# DTM ###############
+dtm_ins    =  dtm_interface.DTMInterface(driver, dtm_url)
+dtm_result = dtm_ins.start()
+
+
+# ############# TRUNK ###############
+trunk_ins    =  pm_overview.PMOverview(driver, pm_trunk_url)
+trunk_result = trunk_ins.start()
+
+
+############ TS1 ################
+ts1_ins    =  pm_details.PMDetails(driver, pm_ts_url, 1,yesterday_date)
+ts1_result = ts1_ins.start()
+
+
+############ TS2 ################
+ts2_ins    =  pm_details.PMDetails(driver, pm_ts_url, 2,'5 Oct 2021')
+ts2_result = ts2_ins.start()
+
+
+
+driver.close()
+
+# Print Results
+print('\n')
+print("+ Temprature:  ", eqm_result)
+alarm_ins.sp_print(alarm_result)
+dtm_ins.sp_print(dtm_result)
+trunk_ins.sp_print(trunk_result)
+ts1_ins.sp_print(ts1_result)
+ts2_ins.sp_print(ts2_result)
+
+
+exit()
