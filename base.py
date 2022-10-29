@@ -25,8 +25,10 @@ pm_ts_url    = "F://Nimbra360_scrapping/temp/pm_details.html"
 
 
 # Make an instance of Chrome driver
+op = webdriver.ChromeOptions()
+op.add_argument('headless')
 service = Service(executable_path= chrome_driver_path)
-driver  = webdriver.Chrome(service=service)
+driver  = webdriver.Chrome(service=service, options=op)
 
 
 print(f'\n ############## Start scrapping: {nimbra_name} ##############')
