@@ -27,7 +27,7 @@ nimbras_info = {
 # Iterate on each nimbra 
 for nimbra_name in nimbras_info:
     nimbra = nimbras_info[nimbra_name]
-
+    
     print('\n')
     print(f"**************** {nimbra_name} ****************")
 
