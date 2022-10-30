@@ -35,12 +35,12 @@ class Login():
         for inp in inputs:
             name_of_input = inp.get_attribute("name")  # Get name of inputs tag
 
-            if name_of_input == 'login'    : inp.send_keys(self.password) # For send passwd
-            elif name_of_input == 'passwd' : inp.send_keys(self.username) # For send username
+            if name_of_input == 'login'    : inp.send_keys(self.username) # For send passwd
+            elif name_of_input == 'passwd' : inp.send_keys(self.password) # For send username
             elif name_of_input == 'ok'     : login_buttun = inp           # Submit login form
 
         login_buttun.click()
-        print("(Info) Login is completed! \n")
+        print("(Info) Login is completed!")
 
         return True
 
