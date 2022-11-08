@@ -41,7 +41,7 @@ for nimbra_name in nimbras_info:
 
 
     ## Login
-    login_ins =  login.Login(driver, login_url, nimbra['username'], nimbra['password'])
+    login_ins =  login.Login(driver, login_url, nimbra['username'], nimbra['password'], login_name=nimbra_name)
     login_ins.start()
 
     ## Alarm

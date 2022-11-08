@@ -16,7 +16,7 @@ class Login():
 
     def __init__(self, driver : webdriver.Chrome, url, password = 'password', username = 'admin', login_name = 'Ghaen'):
         # Print information
-        print(f'(Info) Start login page of ({login_name})({url})')
+        print(f'(Info) Start login page ({login_name}) ({url})')
     
         # Save parameters
         self.url        = url
