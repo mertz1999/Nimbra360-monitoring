@@ -1,7 +1,7 @@
 from selenium.webdriver.chrome.service import Service
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from pages import login, status_alarm, status_eqm, dtm_interface,pm_overview, pm_details
+from data_pages import login, status_alarm, status_eqm, dtm_interface,pm_overview, pm_details
 import time
 
 
