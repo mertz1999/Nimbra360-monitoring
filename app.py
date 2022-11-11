@@ -6,14 +6,17 @@ import datetime
 st.set_page_config(
     page_title="Nimbra Scrapper",
     page_icon="👋",
-    layout="wide",
+    layout="wide"
 )
 
 
+def scrap(today, yesterdat, stations):
+    pass
 
-st.markdown("""
-            # <div align="center">Scrap Nimbra now</div>  
-            """, unsafe_allow_html=True)
+
+# st.markdown("""
+#             # <div align="center">Scrap Nimbra now</div>  
+#             """, unsafe_allow_html=True)
 
 
 # A form on sidebar
@@ -39,7 +42,7 @@ with st.sidebar.form("Inputs:"):
                           ('Tabas', 'Ghaen', 'Sarbishe'),
                           ('Tabas', 'Ghaen', 'Sarbishe'))
     
-    submitted = st.form_submit_button("Start!")
+    submitted = st.form_submit_button("Start!",on_click=)
     if submitted:
         st.session_state['data'] = {
             'today' : d,
@@ -47,12 +50,40 @@ with st.sidebar.form("Inputs:"):
             'stations' : stations
         }
 
+
+
+# Make container to write information from Nimbra
+info_container = st.container()
+
+information_data = np.array(
+    [['Tabas', '25 °C', "✅/✅", "✅", "0 4 0 0","0 0 0 0","0 0 0 0","0 0 0 0","0 4 0 0","0 0 0 0"]]
+)
+
+data = pd.DataFrame(
+    information_data,
+    columns=('Station', 
+             '🌡️ Temprature', 
+             '📡​ DTM(RX/TX)', 
+             '🚨 Alarm', 
+             '📮 Trunk ES', '📮 Trunk SES', '📮 Trunk UAS', '📮 Trunk SS',
+             '🧰​ TS0 (ES SES BBE UAS)',
+             '🧰​ TS1 (ES SES BBE UAS)',
+            )
+)
+data.set_index("Station", inplace = True)
+
+st.dataframe(data)
+# info_container.markdown("***")
+# info_container.markdown('#### <div align="center" style="margin-top: -39px;">😱 Tabas</div>', unsafe_allow_html=True)
+# info_container.markdown("##### 🌡️​ Temprature: 25 °C")
+# info_container.markdown("##### 🚨​ Alarms:")
+# info_container.success("CLEARED 123 opoi ooo opo", icon="✅")
+
+
 # col1, col2, col3 = st.columns(3)
 
 # with col2:
 #    st.button('Start scrapping',type='primary')
-   
-   
 
 
 
