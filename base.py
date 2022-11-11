@@ -84,6 +84,19 @@ class Base():
             ts1_ins.sp_print(ts1_result)
             ts2_ins.sp_print(ts2_result)
 
+            # Save result
+            results.append({
+                'name' : nimbra_name,
+                'temprature' : eqm_result,
+                'alarm' : alarm_result,
+                'DTM' : dtm_result,
+                'trunk' : trunk_result,
+                'ts1' : ts1_result,
+                'ts2' : ts2_result,
+            })
+        
+        return results
+
 
 
 
