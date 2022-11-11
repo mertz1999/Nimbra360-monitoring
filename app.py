@@ -18,9 +18,16 @@ st.set_page_config(
 with open("./inc/style.css") as source_css:
     st.markdown(f"<style>{source_css.read()}<style>", unsafe_allow_html=True)
 
+st.header("Nimbra Monitoring")
 
 # Scrap CallBackfunction
 def scrap(today, yesterday, stations):
+    # print(stations);exit()
+    # today = st.session_state['data']['today']
+    # yesterday = st.session_state['data']['yesterday']
+    # stations = st.session_state['data']['stations']
+
+
     prog_bar = st.progress(0)
     months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
     today_date     = f'{today.day} {months[today.month]} {today.year}'
@@ -58,6 +65,7 @@ def scrap(today, yesterday, stations):
     data.set_index("Station", inplace = True)
 
     st.empty()
+    st.write(datetime.datetime.today())
     st.dataframe(data)
 
 
@@ -70,35 +78,32 @@ def scrap(today, yesterday, stations):
 
 
 # A form on sidebar
-with st.sidebar.form("Inputs:"):
-    st.markdown("## Inputs:")
+side_form = st.sidebar.form("Inputs:")
+side_form.markdown("## Inputs:")
 
-    # Get date of today and yesterday
-    today = datetime.datetime.today()
-    yesterday = datetime.datetime.today() - datetime.timedelta(days=1)
+# Get date of today and yesterday
+today = datetime.datetime.today()
+yesterday = datetime.datetime.today() - datetime.timedelta(days=1)
 
-    # make time input
-    d = st.date_input(
-    "Today:",
-    datetime.date(today.year, today.month, today.day)
-    )
-    d2 = st.date_input(
-    "Yesterday:",
-    datetime.date(yesterday.year, yesterday.month, yesterday.day)
-    )
+# make time input
+d = side_form.date_input(
+"Today:",
+datetime.date(today.year, today.month, today.day)
+)
+d2 = side_form.date_input(
+"Yesterday:",
+datetime.date(yesterday.year, yesterday.month, yesterday.day)
+)
 
-    # Stations
-    stations = st.multiselect( 'Select stations:',
-                          ('Tabas', 'Ghaen', 'Abiz'),
-                          ('Tabas', 'Ghaen', 'Abiz'))
-    
-    submitted = st.form_submit_button("Start!",on_click=scrap, args=(d,d2,stations))
-    if submitted:
-        st.session_state['data'] = {
-            'today' : d,
-            'yesterday' : d2,
-            'stations' : stations
-        }
+# Stations
+stations = side_form.multiselect( 'Select stations:',
+                        ('Tabas', 'Ghaen', 'Abiz'),
+                        ('Tabas', 'Ghaen', 'Abiz')
+                        )
+
+submitted = side_form.form_submit_button("Start!")
+if submitted:
+    scrap(d,d2,stations)
 
 
 
@@ -120,4 +125,5 @@ data = pd.DataFrame(
 )
 data.set_index("Station", inplace = True)
 
-st.dataframe(data)
+# base_container = st.container()
+# temp = base_container.dataframe(data)
