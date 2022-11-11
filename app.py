@@ -1,17 +1,27 @@
 import streamlit as st
+from base import Base
 import pandas as pd
 import numpy as np
 import datetime
 
+# Instance of our scrapper system
+core = Base()
+
+# Config streamlit window
 st.set_page_config(
     page_title="Nimbra Scrapper",
     page_icon="👋",
     layout="wide"
 )
 
-
-def scrap(today, yesterdat, stations):
-    pass
+# Scrap CallBackfunction
+def scrap(today, yesterday, stations):
+    prog_bar = st.progress(0)
+    months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+    today_date     = f'{today.day} {months[today.month]} {today.year}'
+    yesterday_date = f'{yesterday.day} {months[yesterday.month]} {yesterday.year}'
+    core.start(today_date=today_date, yesterday_date=yesterday_date, stations=stations, prog_bar=prog_bar)
+    prog_bar.empty()
 
 
 # st.markdown("""
@@ -39,10 +49,10 @@ with st.sidebar.form("Inputs:"):
 
     # Stations
     stations = st.multiselect( 'Select stations:',
-                          ('Tabas', 'Ghaen', 'Sarbishe'),
-                          ('Tabas', 'Ghaen', 'Sarbishe'))
+                          ('Tabas', 'Ghaen', 'Abiz'),
+                          ('Tabas', 'Ghaen', 'Abiz'))
     
-    submitted = st.form_submit_button("Start!",on_click=)
+    submitted = st.form_submit_button("Start!",on_click=scrap, args=(d,d2,stations))
     if submitted:
         st.session_state['data'] = {
             'today' : d,
@@ -73,39 +83,3 @@ data = pd.DataFrame(
 data.set_index("Station", inplace = True)
 
 st.dataframe(data)
-# info_container.markdown("***")
-# info_container.markdown('#### <div align="center" style="margin-top: -39px;">😱 Tabas</div>', unsafe_allow_html=True)
-# info_container.markdown("##### 🌡️​ Temprature: 25 °C")
-# info_container.markdown("##### 🚨​ Alarms:")
-# info_container.success("CLEARED 123 opoi ooo opo", icon="✅")
-
-
-# col1, col2, col3 = st.columns(3)
-
-# with col2:
-#    st.button('Start scrapping',type='primary')
-
-
-
-
-# d = st.date_input(
-#     "When's your birthday",
-#     datetime.date(datetime.datetime.today().year, datetime.datetime.today().month, datetime.datetime.today().day))
-# st.write('Your birthday is:', d)
-
-
-
-# tab1, tab2, tab3 = st.tabs(["Cat", "Dog", "Owl"])
-
-# with tab1:
-#    st.header("A cat")
-#    st.image("https://static.streamlit.io/examples/cat.jpg", width=200)
-
-# with tab2:
-#    st.header("A dog")
-#    st.image("https://static.streamlit.io/examples/dog.jpg", width=200)
-
-# with tab3:
-#    st.header("An owl")
-#    st.image("https://static.streamlit.io/examples/owl.jpg", width=200)
-

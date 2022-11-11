@@ -19,12 +19,17 @@ class Base():
         # Nimbra variable that save informations
         self.nimbras_info = {
             'Ghaen' : {'ip': 'F://Nimbra360_scrapping/temp', 'username':'root', 'password':'xxxx'},
+            'Tabas' : {'ip': 'F://Nimbra360_scrapping/temp', 'username':'root', 'password':'xxxx'},
+            'Abiz'  : {'ip': 'F://Nimbra360_scrapping/temp', 'username':'root', 'password':'xxxx'},
         }
     
     # Start Scrapping
-    def start(self, today_date='10 Sep 2022', yesterday_date='5 Oct 2021',stations=['Ghaen']):
+    def start(self, today_date='10 Sep 2022', yesterday_date='5 Oct 2021',stations=['Ghaen'], **kwargs):
+        results = []
         # Iterate on each nimbra 
-        for nimbra_name in stations:
+        for i, nimbra_name in enumerate(stations):
+            kwargs['prog_bar'].progress(int(100/len(stations))*(i+1))
+            if nimbra_name not in self.nimbras_info.keys(): continue
             nimbra = self.nimbras_info[nimbra_name]
             
             print('\n')
@@ -79,6 +84,6 @@ class Base():
             ts1_ins.sp_print(ts1_result)
             ts2_ins.sp_print(ts2_result)
 
-            
+
 
 
