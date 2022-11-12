@@ -49,6 +49,7 @@ class Base():
             login_ins.start()
 
             ## Alarm
+            print(today_date)
             alarm_ins    =  status_alarm.StatusAlarm(self.driver, alarm_url, date=today_date)
             alarm_result = alarm_ins.start()
 

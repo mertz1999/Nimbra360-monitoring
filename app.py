@@ -67,6 +67,7 @@ def scrap(today, yesterday, stations):
     st.empty()
     st.write(datetime.datetime.today())
     st.dataframe(data)
+    st.write(result["alarm"])
 
 
     prog_bar.empty()
@@ -78,6 +79,8 @@ def scrap(today, yesterday, stations):
 
 
 # A form on sidebar
+st.sidebar.image("./inc/logo.png", width=100)
+
 side_form = st.sidebar.form("Inputs:")
 side_form.markdown("## Inputs:")
 
