@@ -30,7 +30,7 @@ def scrap(today, yesterday, stations):
 
     prog_bar = st.progress(0)
     months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
-    today_date     = f'{today.day} {months[today.month]} {today.year}'
+    today_date     = f'{today.day} {months[today.month-1]} {today.year}'
     yesterday_date = f'{yesterday.day} {months[yesterday.month]} {yesterday.year}'
     results = core.start(today_date=today_date, yesterday_date=yesterday_date, stations=stations, prog_bar=prog_bar)
     
